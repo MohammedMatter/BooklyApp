@@ -1,3 +1,4 @@
+import 'package:bookly_app/core/utils/styles.dart';
 import 'package:bookly_app/features/home/presentation/widgets/book_image_container.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 15),
+      margin: EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -32,15 +33,10 @@ class HomePageBody extends StatelessWidget {
                 children: [
                   if (index == 0)
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 20 ,top: 30),
+                      padding: const EdgeInsets.only(bottom: 20 ,top: 50),
                       child: Text(
                         'Best Seller',
-                        style: TextStyle(
-                          fontFamily: 'MontserratSemiBold',
-                          fontSize: height * 0.026,
-
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Styles.titleMedium
                       ),
                     ),
 
