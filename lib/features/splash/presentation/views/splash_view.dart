@@ -16,19 +16,7 @@ class _SplashViewState extends State<SplashView>
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 2),
-    );
-    _animation = Tween<Offset>(
-      begin: Offset(0, 4),
-      end: Offset.zero,
-    ).animate(_animationController);
-    _animationController.forward();
-    Timer(
-      Duration(seconds: 4),
-      () => Navigator.of(context).pushNamed('HomePage'),
-    );
+  initSlideAnimation() ; 
   }
 
   @override
@@ -46,4 +34,21 @@ class _SplashViewState extends State<SplashView>
       body: SplashViewBody(animation: _animation, height: height, width: width),
     );
   }
+  
+    void initSlideAnimation(){
+  _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+    _animation = Tween<Offset>(
+      begin: Offset(0, 4),
+      end: Offset.zero,
+    ).animate(_animationController);
+    _animationController.forward();
+    Timer(
+      Duration(seconds: 4),
+      () => Navigator.of(context).pushNamed('HomePage'),
+    );
+
+    }
 }
