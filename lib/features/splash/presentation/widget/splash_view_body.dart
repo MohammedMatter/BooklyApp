@@ -1,4 +1,5 @@
 import 'package:bookly_app/core/utils/assets.dart';
+import 'package:bookly_app/features/splash/presentation/widget/sliding_text.dart';
 import 'package:flutter/material.dart';
 
 class SplashViewBody extends StatelessWidget {
@@ -24,24 +25,9 @@ class SplashViewBody extends StatelessWidget {
           child: Image.asset(AssestData.logo, fit: BoxFit.fill),
         ),
         SizedBox(height: height * 0.01),
-        AnimatedBuilder(
-          animation: _animation,
-          builder: (context, child) => SlideTransition(
-                 position:_animation ,
-            child: Align(
-              alignment: Alignment.center,
-              child: Text(
-                'Read for books',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'montserrat',
-                ),
-              ),
-            ),
-          ),
-        ),
+        SlidingText(animation: _animation),
       ],
     );
   }
 }
+
