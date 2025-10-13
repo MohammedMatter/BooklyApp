@@ -2,11 +2,28 @@ import 'package:bookly_app/core/utils/styles.dart';
 import 'package:bookly_app/features/home/presentation/widgets/book_image_container.dart';
 import 'package:flutter/material.dart';
 
-class HomePageBody extends StatelessWidget {
+class HomePageBody extends StatefulWidget {
   const HomePageBody({super.key, required this.height, required this.width});
 
   final double height;
   final double width;
+
+  @override
+  State<HomePageBody> createState() => _HomePageBodyState();
+}
+
+class _HomePageBodyState extends State<HomePageBody> {
+  PageController _pageController = PageController(viewportFraction: 0.6);
+  double currentPage = 0;
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      setState(() {
+        currentPage = _pageController.page!;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +33,24 @@ class HomePageBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: height * 0.3,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => BookImageContainer(width: width),
+            height: widget.height * 0.3,
+            child: PageView.builder(
+            controller: _pageController,
+              itemBuilder: (context, index) {
+                final scale = 1 - (currentPage - index).abs() * 0.2;
+                final opacity = 1 - (currentPage - index).abs() * 0.5;
+
+                return Transform.scale(
+                  scale: scale.clamp(0.8, 1.0),
+                  child: Opacity(
+                    opacity: opacity,
+                    child: BookImageContainer(width: widget.width)),
+                );
+              },
               itemCount: 5,
             ),
           ),
-          SizedBox(height: height * 0.02),
+          SizedBox(height: widget.height * 0.02),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: List.generate(
@@ -33,11 +60,8 @@ class HomePageBody extends StatelessWidget {
                 children: [
                   if (index == 0)
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 20 ,top: 50),
-                      child: Text(
-                        'Best Seller',
-                        style: Styles.titleMedium
-                      ),
+                      padding: const EdgeInsets.only(bottom: 20, top: 50),
+                      child: Text('Best Seller', style: Styles.titleMedium),
                     ),
 
                   IntrinsicHeight(
@@ -46,7 +70,7 @@ class HomePageBody extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(bottom: 16),
-                          child: BookImageContainer(width: width),
+                          child: BookImageContainer(width: widget.width),
                         ),
                         SizedBox(width: 5),
                         Expanded(
@@ -55,7 +79,7 @@ class HomePageBody extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
-                                width: width * 0.45,
+                                width: widget.width * 0.45,
                                 child: Text(
                                   'Harry Potter and the Goblet of Fire',
                                   style: TextStyle(
@@ -110,10 +134,10 @@ class HomePageBody extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(width: width * 0.001),
+                                  SizedBox(width: widget.width * 0.001),
                                 ],
                               ),
-                              SizedBox(height: height * 0.09),
+                              SizedBox(height: widget.height * 0.09),
                             ],
                           ),
                         ),
