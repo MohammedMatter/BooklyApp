@@ -10,25 +10,42 @@ class HomePage extends StatelessWidget {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        titleSpacing: 0,
-        actionsPadding: EdgeInsets.only(right: width * 0.05),
-        actions: [Icon(Icons.search, color: Colors.white)],
-        title: Container(
-          margin: EdgeInsets.only(left: 16),
-          width: width * 0.2,
-          height: height * 0.05,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(AssestData.logo),
-            ),
-          ),
-        ),
-      ),
       body: SingleChildScrollView(
-        child: HomePageBody(height: height, width: width),
+        child: Column(
+          children: [
+            CustomAppBar(width: width, height: height),
+            HomePageBody(height: height, width: width),
+          ],
+        ),
       ),
     );
   }
+}
+
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const CustomAppBar({super.key, required this.width, required this.height});
+
+  final double width;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 38),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Image.asset(AssestData.logo),
+          SizedBox(
+            height: 30,
+            width: 25,
+            child: Image.asset(AssestData.icSearch, fit: BoxFit.fill),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }
