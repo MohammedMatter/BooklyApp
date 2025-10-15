@@ -1,16 +1,18 @@
 import 'package:bookly_app/core/utils/styles.dart';
+import 'package:bookly_app/features/home/data/models/book_model.dart';
 import 'package:flutter/material.dart';
 
 class BookActionButtons extends StatelessWidget {
-  const BookActionButtons({
+   BookActionButtons({
     super.key,
+    required this.book , 
     required this.height,
     required this.width,
   });
 
   final double height;
   final double width;
-
+BookModel book ; 
   @override
   Widget build(BuildContext context) {
     return Row(

@@ -23,7 +23,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               width: 20,
               child: GestureDetector(
                 onTap:
-                    () => GoRouter.of(context).pushNamed(AppRouter.kSearchView),
+                    () => GoRouter.of(context).pushNamed(AppRouter.kSearchView ,),
 
                 child: Image.asset(AssestData.icSearch, fit: BoxFit.fill),
               ),

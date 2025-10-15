@@ -12,6 +12,8 @@ class VolumeInfo {
   final List<IndustryIdentifier>? industryIdentifiers;
   final ReadingModes? readingModes;
   final int? pageCount;
+  final double? averageRating;
+  final int? ratingsCount;
   final String? printType;
   final List<String>? categories;
   final String? maturityRating;
@@ -26,6 +28,8 @@ class VolumeInfo {
 
   VolumeInfo({
     required this.title,
+    this.ratingsCount,
+    this.averageRating,
     this.authors,
     this.publisher,
     this.publishedDate,
@@ -48,6 +52,8 @@ class VolumeInfo {
 
   factory VolumeInfo.fromJson(Map<String, dynamic> json) {
     return VolumeInfo(
+      ratingsCount: json['ratingsCount'],
+      averageRating: json['averageRating'],
       title: json['title'] ?? '',
       authors: json['authors'] != null
           ? List<String>.from(json['authors'])

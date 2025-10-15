@@ -1,3 +1,4 @@
+import 'package:bookly_app/features/home/data/models/book_model.dart';
 import 'package:bookly_app/features/home/presentation/views/details_view.dart';
 import 'package:bookly_app/features/home/presentation/views/home_view.dart';
 import 'package:bookly_app/features/search/presentation/views/search_view.dart';
@@ -19,7 +20,10 @@ abstract class AppRouter {
       GoRoute(
         path: '/Search',
         name: kSearchView,
-        builder: (context, state) => SearchView(),
+        builder: (context, state){
+     
+       return   SearchView() ; 
+        },
       ),
       GoRoute(
         path: '/',
@@ -29,7 +33,10 @@ abstract class AppRouter {
       GoRoute(
         path: '/Details',
         name: kDetailsPage,
-        builder: (context, state) => DetailsView(),
+        builder: (context, state){
+final book = state.extra as BookModel; 
+        return DetailsView(book: book,);
+        },
       ),
     ],
   );

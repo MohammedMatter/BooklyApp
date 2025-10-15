@@ -11,13 +11,11 @@ class HomeView extends StatelessWidget {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            CustomAppBar(width: width, height: height),
-            HomePageBody(height: height, width: width),
-          ],
-        ),
+      body: Column(
+        children: [
+          CustomAppBar(width: width, height: height),
+          Expanded(child: HomePageBody(height: height, width: width)),
+        ],
       ),
     );
   }

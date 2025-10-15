@@ -1,13 +1,10 @@
-import 'package:bookly_app/core/utils/assets.dart';
 import 'package:bookly_app/core/utils/styles.dart';
-import 'package:bookly_app/features/home/presentation/widgets/book_image_container.dart';
-import 'package:bookly_app/features/home/presentation/widgets/book_rating.dart';
-import 'package:bookly_app/features/home/presentation/widgets/home_page_body.dart';
+
 import 'package:bookly_app/features/search/presentation/widgets/custom_search_text_field.dart';
 import 'package:flutter/material.dart';
 
 class SearchView extends StatelessWidget {
-  const SearchView({super.key});
+  SearchView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +17,12 @@ class SearchView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomSearchTextField(),
-              SizedBox(height: 30,) , 
-              Text('Search Result' , style: Styles.textStyle20.copyWith(fontFamily: ''),),
-              SizedBox(height: 30,) , 
+              SizedBox(height: 30),
+              Text(
+                'Search Result',
+                style: Styles.textStyle20.copyWith(fontFamily: ''),
+              ),
+              SizedBox(height: 30),
               SearchResultListView(),
             ],
           ),
@@ -44,60 +44,57 @@ class SearchResultListView extends StatelessWidget {
         (index) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-        
-            IntrinsicHeight(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: BookImageContainer(
-                      width: width * 0.25,
-                      height: height * 0.2,
-                    ),
-                  ),
-
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: width * 0.45,
-                          child: Text(
-                            'Harry Potter and the Goblet of Fire',
-                            maxLines: 2,
-                            style: Styles.textStyle20.copyWith(
-                              fontFamily: 'GT font',
-                            ),
-                            overflow: TextOverflow.ellipsis,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Padding(
+                //   padding: const EdgeInsets.only(bottom: 10),
+                //   child: BookImageContainer(
+                //     width: width * 0.25,
+                //     height: height * 0.2,
+                //   ),
+                // ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: width * 0.45,
+                        child: Text(
+                          'Harry Potter and the Goblet of Fire',
+                          maxLines: 2,
+                          style: Styles.textStyle20.copyWith(
+                            fontFamily: 'GT font',
                           ),
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(height: height * 0.01),
-                        Text(
-                          'J.K. Rowling',
-                          style: TextStyle(color: Color(0xff707070)),
-                        ),
-                        SizedBox(height: height * 0.01),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('19.99 €', style: Styles.textStyle20),
-                            BookRating(
-                              widget: HomePageBody(
-                                height: height,
-                                width: width,
-                              ),
-                            ),
-                            SizedBox(width: width * 0.001),
-                          ],
-                        ),
-                        SizedBox(height: height * 0.09),
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: height * 0.01),
+                      Text(
+                        'J.K. Rowling',
+                        style: TextStyle(color: Color(0xff707070)),
+                      ),
+                      SizedBox(height: height * 0.01),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('19.99 €', style: Styles.textStyle20),
+                          // BookRating(
+            
+                          //   widget: HomePageBody(
+                          //     height: height,
+                          //     width: width,
+                          //   ),
+                          // ),
+                          SizedBox(width: width * 0.001),
+                        ],
+                      ),
+                      SizedBox(height: height * 0.09),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),

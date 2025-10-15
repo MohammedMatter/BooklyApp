@@ -1,8 +1,12 @@
+import 'package:bookly_app/core/utils/assets.dart';
 import 'package:bookly_app/core/utils/styles.dart';
+import 'package:bookly_app/features/home/presentation/view_models/book_view_model.dart';
 import 'package:bookly_app/features/home/presentation/widgets/book_image_container.dart';
 import 'package:bookly_app/features/home/presentation/widgets/book_rating.dart';
 import 'package:bookly_app/features/home/presentation/widgets/home_page_body.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 
 class BestSelletListViewItem extends StatelessWidget {
   const BestSelletListViewItem({super.key, required this.widget});
@@ -11,70 +15,106 @@ class BestSelletListViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: List.generate(
-        5,
-        (index) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (index == 0)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20, top: 51),
-                child: Text('Best Seller', style: Styles.textStyle20),
-              ),
-            IntrinsicHeight(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: BookImageContainer(
-                      width: widget.width * 0.25,
-                      height: widget.height * 0.2,
-                    ),
-                  ),
-
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: widget.width * 0.45,
-                          child: Text(
-                            'Harry Potter and the Goblet of Fire',
-                            maxLines: 2,
-                            style: Styles.textStyle20.copyWith(
-                              fontFamily: 'GT font',
+    return GetX<BookViewModel>(
+      builder:
+          (controller) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children:
+                controller.books
+                    .map(
+                      (book) => Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (controller.books.indexOf(book) == 0)
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                bottom: 20,
+                                top: 51,
+                              ),
+                              child: Text(
+                                'Best Seller',
+                                style: Styles.textStyle20,
+                              ),
                             ),
-                            overflow: TextOverflow.ellipsis,
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 10),
+                                child: BookImageContainer(
+                                  image:
+                                      book
+                                          .volumeInfo
+                                          .imageLinks!
+                                          .smallThumbnail!,
+                                  width: widget.width * 0.25,
+                                  height: widget.height * 0.2,
+                                ),
+                              ),
+                          
+                              Expanded(
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      width: widget.width * 0.45,
+                                      child: Text(
+                                        book.volumeInfo.title,
+                                        maxLines: 2,
+                                        style: Styles.textStyle20.copyWith(
+                                          fontFamily: 'GT font',
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    SizedBox(height: widget.height * 0.01),
+                          
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children:
+                                          book.volumeInfo.authors!
+                                              .map(
+                                                (e) => Text(
+                                                  e,
+                                                  style: TextStyle(
+                                                    color: Color(0xff707070),
+                                                  ),
+                                                ),
+                                              )
+                                              .toList(),
+                                    ),
+                          
+                                    SizedBox(height: widget.height * 0.01),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          book.saleInfo.saleability=="NOT_FOR_SALE"?'Not For Sale':'Free' , 
+                                          style: Styles.textStyle18,
+                                        ),
+                                        Spacer(),
+                                        BookRating(widget: widget , rating:book.volumeInfo.averageRating,book: book,),
+                                        SizedBox(width: widget.width * 0.001),
+                                        
+                                      ],
+                                    ),
+                             
+                                  ],
+                                ),
+                              ),
+                          
+                            ],
                           ),
-                        ),
-                        SizedBox(height: widget.height * 0.01),
-                        Text(
-                          'J.K. Rowling',
-                          style: TextStyle(color: Color(0xff707070)),
-                        ),
-                        SizedBox(height: widget.height * 0.01),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('19.99 €', style: Styles.textStyle20),
-                            BookRating(widget: widget),
-                            SizedBox(width: widget.width * 0.001),
-                          ],
-                        ),
-                        SizedBox(height: widget.height * 0.09),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+                            Divider()
+                        ],
+                      ),
+                    )
+                    .toList(),
+          ),
     );
   }
 }
