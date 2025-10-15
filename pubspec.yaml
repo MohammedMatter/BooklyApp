@@ -31,7 +31,9 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
-  get: ^4.7.2
+  go_router: ^16.2.4
+  http: ^1.5.0
+  provider: ^6.1.5+1
 
 dev_dependencies:
 
@@ -71,9 +73,14 @@ flutter:
     - family: GT font
       fonts:
         - asset: assets/fonts/GT Sectra Fine Regular/GT Sectra Fine Regular.ttf
+    
     - family: montserrat
       fonts:
         - asset: assets/fonts/montserrat/Montserrat-Medium.ttf
+    - family: montserratItalic
+      fonts:
+        - asset: assets/fonts/montserrat/Montserrat-Medium.ttf
+          style: italic
     - family: MontserratSemiBold
       fonts:
         - asset: assets/fonts/montserrat/Montserrat-SemiBold.ttf

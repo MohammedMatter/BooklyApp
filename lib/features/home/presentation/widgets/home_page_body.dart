@@ -1,6 +1,5 @@
-
 import 'package:bookly_app/features/home/presentation/widgets/best_seller_list_view_item.dart';
-import 'package:bookly_app/features/home/presentation/widgets/book_image_container.dart';
+import 'package:bookly_app/features/home/presentation/widgets/book_list_slider.dart';
 import 'package:flutter/material.dart';
 
 class HomePageBody extends StatefulWidget {
@@ -14,7 +13,7 @@ class HomePageBody extends StatefulWidget {
 }
 
 class _HomePageBodyState extends State<HomePageBody> {
-  PageController _pageController = PageController(viewportFraction: 0.5);
+  final PageController _pageController = PageController(viewportFraction: 0.45);
   double currentPage = 0;
   @override
   void initState() {
@@ -33,23 +32,10 @@ class _HomePageBodyState extends State<HomePageBody> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: widget.height * 0.3,
-            child: PageView.builder(
-            controller: _pageController,
-              itemBuilder: (context, index) {
-                final scale = 1 - (currentPage - index).abs() * 0.2;
-                final opacity = 1 - (currentPage - index).abs() * 0.5;
-
-                return Transform.scale(
-                  scale: scale.clamp(0.8, 1.0),
-                  child: Opacity(
-                    opacity: opacity,
-                    child: BookImageContainer(width: widget.width)),
-                );
-              },
-              itemCount: 5,
-            ),
+          BookListSlider(
+            widget: widget,
+            pageController: _pageController,
+            currentPage: currentPage,
           ),
           SizedBox(height: widget.height * 0.02),
           BestSelletListViewItem(widget: widget),
@@ -58,4 +44,3 @@ class _HomePageBodyState extends State<HomePageBody> {
     );
   }
 }
-

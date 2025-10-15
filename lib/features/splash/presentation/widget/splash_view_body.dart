@@ -21,7 +21,7 @@ class SplashViewBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: const EdgeInsets.all(22.0),
+          padding: const EdgeInsets.all(60.0),
           child: Image.asset(AssestData.logo, fit: BoxFit.fill),
         ),
         SizedBox(height: height * 0.01),

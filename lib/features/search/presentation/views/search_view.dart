@@ -1,16 +1,42 @@
+import 'package:bookly_app/core/utils/assets.dart';
 import 'package:bookly_app/core/utils/styles.dart';
 import 'package:bookly_app/features/home/presentation/widgets/book_image_container.dart';
 import 'package:bookly_app/features/home/presentation/widgets/book_rating.dart';
 import 'package:bookly_app/features/home/presentation/widgets/home_page_body.dart';
+import 'package:bookly_app/features/search/presentation/widgets/custom_search_text_field.dart';
 import 'package:flutter/material.dart';
 
-class BestSelletListViewItem extends StatelessWidget {
-  const BestSelletListViewItem({super.key, required this.widget});
-
-  final HomePageBody widget;
+class SearchView extends StatelessWidget {
+  const SearchView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomSearchTextField(),
+              SizedBox(height: 30,) , 
+              Text('Search Result' , style: Styles.textStyle20.copyWith(fontFamily: ''),),
+              SizedBox(height: 30,) , 
+              SearchResultListView(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SearchResultListView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(
@@ -18,11 +44,7 @@ class BestSelletListViewItem extends StatelessWidget {
         (index) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (index == 0)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20, top: 51),
-                child: Text('Best Seller', style: Styles.textStyle20),
-              ),
+        
             IntrinsicHeight(
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,8 +52,8 @@ class BestSelletListViewItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: BookImageContainer(
-                      width: widget.width * 0.25,
-                      height: widget.height * 0.2,
+                      width: width * 0.25,
+                      height: height * 0.2,
                     ),
                   ),
 
@@ -41,7 +63,7 @@ class BestSelletListViewItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: widget.width * 0.45,
+                          width: width * 0.45,
                           child: Text(
                             'Harry Potter and the Goblet of Fire',
                             maxLines: 2,
@@ -51,21 +73,26 @@ class BestSelletListViewItem extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                        SizedBox(height: widget.height * 0.01),
+                        SizedBox(height: height * 0.01),
                         Text(
                           'J.K. Rowling',
                           style: TextStyle(color: Color(0xff707070)),
                         ),
-                        SizedBox(height: widget.height * 0.01),
+                        SizedBox(height: height * 0.01),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text('19.99 €', style: Styles.textStyle20),
-                            BookRating(widget: widget),
-                            SizedBox(width: widget.width * 0.001),
+                            BookRating(
+                              widget: HomePageBody(
+                                height: height,
+                                width: width,
+                              ),
+                            ),
+                            SizedBox(width: width * 0.001),
                           ],
                         ),
-                        SizedBox(height: widget.height * 0.09),
+                        SizedBox(height: height * 0.09),
                       ],
                     ),
                   ),

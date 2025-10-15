@@ -3,8 +3,8 @@ import 'package:bookly_app/features/home/presentation/widgets/custom_app_bar.dar
 import 'package:bookly_app/features/home/presentation/widgets/home_page_body.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
