@@ -99,7 +99,7 @@ class BestSelletListViewItem extends StatelessWidget {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            book.saleInfo.saleability=="NOT_FOR_SALE"?'Not For Sale':'Free' , 
+                                            book.saleInfo.saleability=="NOT_FOR_SALE"?'Free':'For Sale' , 
                                             style: Styles.textStyle18,
                                           ),
                                           Spacer(),

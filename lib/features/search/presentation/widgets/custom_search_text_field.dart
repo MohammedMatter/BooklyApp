@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bookly_app/core/utils/app_router.dart';
 import 'package:bookly_app/core/utils/assets.dart';
 import 'package:bookly_app/core/utils/styles.dart';
@@ -7,7 +9,6 @@ import 'package:bookly_app/features/home/presentation/widgets/book_image_contain
 import 'package:bookly_app/features/home/presentation/widgets/book_rating.dart';
 import 'package:bookly_app/features/home/presentation/widgets/home_page_body.dart';
 import 'package:bookly_app/features/search/presentation/view_models/search_view_model.dart';
-import 'package:bookly_app/features/search/presentation/views/search_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -18,13 +19,14 @@ class CustomSearchTextField extends StatelessWidget {
     BookViewModel(BookRepositoryImpl()),
     permanent: true,
   );
-  final SearchViewModel searchVM = Get.put(SearchViewModel());
+  final SearchViewModel searchVM = Get.put(SearchViewModel() );
   TextEditingController controllerSearch = TextEditingController();
 
   CustomSearchTextField({super.key});
 
   @override
   Widget build(BuildContext context) {
+    log('${searchVM.searchValue}') ; 
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
     return Column(
@@ -136,8 +138,8 @@ class CustomSearchTextField extends StatelessWidget {
                                               Text(
                                                 element.saleInfo.saleability ==
                                                         "NOT_FOR_SALE"
-                                                    ? 'Not For Sale'
-                                                    : 'Free',
+                                                    ? 'Free'
+                                                    : 'For Sale',
                                                 style: Styles.textStyle18,
                                               ),
                                               Spacer(),

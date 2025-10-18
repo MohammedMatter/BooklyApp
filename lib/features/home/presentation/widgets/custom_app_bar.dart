@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-   CustomAppBar({super.key, required this.width, required this.height});
+class CustomAppBar extends StatelessWidget  {
+  CustomAppBar({super.key, required this.width, required this.height});
 
   final double width;
   final double height;
-BookViewModel bookVm = Get.put(BookViewModel(BookRepositoryImpl())) ; 
+  BookViewModel bookVm = Get.put(BookViewModel(BookRepositoryImpl()));
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,10 +25,11 @@ BookViewModel bookVm = Get.put(BookViewModel(BookRepositoryImpl())) ;
               height: 20,
               width: 20,
               child: GestureDetector(
-                onTap:
-                    () {
-                bookVm.error.isEmpty?      GoRouter.of(context).pushNamed(AppRouter.kSearchView ,):null;
-                    },
+                onTap: () {
+                  bookVm.error.isEmpty
+                      ? GoRouter.of(context).pushNamed(AppRouter.kSearchView)
+                      : null;
+                },
 
                 child: Image.asset(AssestData.icSearch, fit: BoxFit.fill),
               ),
@@ -39,6 +40,4 @@ BookViewModel bookVm = Get.put(BookViewModel(BookRepositoryImpl())) ;
     );
   }
 
-  @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }
