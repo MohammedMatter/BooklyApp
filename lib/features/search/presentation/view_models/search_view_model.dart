@@ -26,7 +26,7 @@ class SearchViewModel extends GetxController {
 
   void clearSearchData() {
     searchValue.value = '';
-     filterdList.assignAll(bookViewModel.feateuredBooks);
+    filterdList.assignAll(bookViewModel.feateuredBooks);
   }
 
   @override
