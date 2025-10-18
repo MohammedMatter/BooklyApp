@@ -35,7 +35,7 @@ class BookViewModel extends GetxController {
   void onInit() {
     Connectivity().onConnectivityChanged.listen((event) {
       if (event.contains( ConnectivityResult.none)) {
-        error('No Internet');
+        error('No Internet Connection');
       } else {
         if (event.isNotEmpty) error('');
       }
