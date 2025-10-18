@@ -1,7 +1,7 @@
-import 'package:bookly_app/features/home/data/models/image_links.dart';
-import 'package:bookly_app/features/home/data/models/industryIdentifiers.dart';
-import 'package:bookly_app/features/home/data/models/panelization_summary.dart';
-import 'package:bookly_app/features/home/data/models/reading_modes.dart';
+import 'package:bookly_app/features/home/data/models/book_model/image_links.dart';
+import 'package:bookly_app/features/home/data/models/book_model/industryIdentifiers.dart';
+import 'package:bookly_app/features/home/data/models/book_model/panelization_summary.dart';
+import 'package:bookly_app/features/home/data/models/book_model/reading_modes.dart';
 
 class VolumeInfo {
   final String title;
@@ -12,7 +12,7 @@ class VolumeInfo {
   final List<IndustryIdentifier>? industryIdentifiers;
   final ReadingModes? readingModes;
   final int? pageCount;
-  final double? averageRating;
+  // final double? averageRating;
   final int? ratingsCount;
   final String? printType;
   final List<String>? categories;
@@ -29,7 +29,7 @@ class VolumeInfo {
   VolumeInfo({
     required this.title,
     this.ratingsCount,
-    this.averageRating,
+    // this.averageRating,
     this.authors,
     this.publisher,
     this.publishedDate,
@@ -53,7 +53,7 @@ class VolumeInfo {
   factory VolumeInfo.fromJson(Map<String, dynamic> json) {
     return VolumeInfo(
       ratingsCount: json['ratingsCount'],
-      averageRating: json['averageRating'],
+      // averageRating: json['averageRating'] as double,
       title: json['title'] ?? '',
       authors: json['authors'] != null
           ? List<String>.from(json['authors'])

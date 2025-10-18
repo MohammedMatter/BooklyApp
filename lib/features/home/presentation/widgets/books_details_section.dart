@@ -1,6 +1,5 @@
-import 'package:bookly_app/core/utils/assets.dart';
 import 'package:bookly_app/core/utils/styles.dart';
-import 'package:bookly_app/features/home/data/models/book_model.dart';
+import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly_app/features/home/presentation/widgets/book_action_button.dart';
 import 'package:bookly_app/features/home/presentation/widgets/book_image_container.dart';
 import 'package:bookly_app/features/home/presentation/widgets/book_rating.dart';
@@ -32,18 +31,17 @@ class BookDetailsSection extends StatelessWidget {
         SizedBox(height: height * 0.05),
         Text(
           book.volumeInfo.title,
-          style: Styles.textStyle30,
+          style: Styles.textStyle20.copyWith(fontFamily: 'GT font'),
           textAlign: TextAlign.center,
         ),
         SizedBox(height: height * 0.01),
-
-        //
         Column(
           children:
               book.volumeInfo.authors!
                   .map(
                     (auther) => Text(
                       auther,
+                      textAlign: TextAlign.center,
                       style: Styles.textStyle18.copyWith(
                         color: Color(0xff707070),
                         fontFamily: 'montserratItalic',

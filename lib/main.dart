@@ -3,7 +3,7 @@ import 'package:bookly_app/constants.dart';
 import 'package:bookly_app/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 void main() async{
-
+WidgetsFlutterBinding.ensureInitialized() ; 
   runApp(const MyApp());
 }
 

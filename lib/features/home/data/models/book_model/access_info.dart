@@ -1,5 +1,5 @@
-import 'package:bookly_app/features/home/data/models/equp.dart';
-import 'package:bookly_app/features/home/data/models/pdf.dart';
+import 'package:bookly_app/features/home/data/models/book_model/equp.dart';
+import 'package:bookly_app/features/home/data/models/book_model/pdf.dart';
 
 class AccessInfo {
   final String country;

@@ -1,4 +1,4 @@
-import 'package:bookly_app/features/home/data/models/book_model.dart';
+import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly_app/features/home/presentation/views/details_view.dart';
 import 'package:bookly_app/features/home/presentation/views/home_view.dart';
 import 'package:bookly_app/features/search/presentation/views/search_view.dart';
@@ -8,7 +8,7 @@ import 'package:go_router/go_router.dart';
 abstract class AppRouter {
   static String kHomePage =  'HomePage'; 
   static String kSplashView =  'SplashView'; 
-  static String kDetailsPage =  'DetailsPage'; 
+  static String   kDetailsPage =  'DetailsPage'; 
   static String kSearchView =  'SearchView'; 
   static final router = GoRouter(
     routes: [
