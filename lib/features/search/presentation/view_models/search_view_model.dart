@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:bookly_app/features/home/presentation/view_models/book_view_model.dart';
 import 'package:get/get.dart';
@@ -18,5 +20,10 @@ class SearchViewModel extends GetxController {
         }),
       );
     }
+  }
+  @override
+  void onInit() {
+    super.onInit();
+    filterdList.assignAll(bookViewModel.feateuredBooks) ; 
   }
 }

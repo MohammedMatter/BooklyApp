@@ -39,14 +39,5 @@ class BookModel {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        'kind': kind,
-        'id': id,
-        'etag': etag,
-        'selfLink': selfLink,
-        'volumeInfo': volumeInfo.toJson(),
-        'saleInfo': saleInfo.toJson(),
-        'accessInfo': accessInfo.toJson(),
-        'searchInfo': searchInfo?.toJson(),
-      };
+ 
 }

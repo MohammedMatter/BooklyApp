@@ -90,26 +90,5 @@ class VolumeInfo {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        'title': title,
-        'authors': authors,
-        'publisher': publisher,
-        'publishedDate': publishedDate,
-        'description': description,
-        'industryIdentifiers':
-            industryIdentifiers?.map((e) => e.toJson()).toList(),
-        'readingModes': readingModes?.toJson(),
-        'pageCount': pageCount,
-        'printType': printType,
-        'categories': categories,
-        'maturityRating': maturityRating,
-        'allowAnonLogging': allowAnonLogging,
-        'contentVersion': contentVersion,
-        'panelizationSummary': panelizationSummary?.toJson(),
-        'imageLinks': imageLinks?.toJson(),
-        'language': language,
-        'previewLink': previewLink,
-        'infoLink': infoLink,
-        'canonicalVolumeLink': canonicalVolumeLink,
-      };
+ 
 }
